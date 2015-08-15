@@ -1,6 +1,8 @@
 # PyConfigManager
 
-A quick way to manage your JSON Configs. If we have a folder structure of 
+A quick way to manage your JSON Configs. 
+
+If we have a folder structure of 
 ```
 config/
   config.json
