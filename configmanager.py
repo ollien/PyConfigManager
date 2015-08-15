@@ -8,8 +8,11 @@ class ConfigManager():
 			self.configPath = configPath
 		else:
 			raise IOError("Config Path does not eixst")
-		self.configs = {}
+		self._configs = {}
 		self.getConfigs()
+
+	def __getitem__(self, key):
+		return configs[key]
 
 	#Recursive function to get all files. Sub is the relative path from the root config dir.	
 	def getConfigs(self, path = None, sub = ""):
