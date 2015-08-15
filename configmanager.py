@@ -17,6 +17,9 @@ class ConfigManager():
 			path = self.configPath
 		files = os.listdir(path)	
 		for item in files:
+			#Ignore hidden files.
+			if item[0] == ".":
+				continue
 			#If it's a directory, run this function again within that directory
 			if os.path.isdir(os.path.join(path, item)):
 				self.getConfigs(path = os.path.join(path, item), sub = os.path.join(sub, item))
