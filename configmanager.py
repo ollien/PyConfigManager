@@ -12,7 +12,7 @@ class ConfigManager():
 		self.getConfigs()
 
 	def __getitem__(self, key):
-		return configs[key]
+		return self._configs[key]
 
 	#Recursive function to get all files. Sub is the relative path from the root config dir.	
 	def getConfigs(self, path = None, sub = ""):
@@ -46,4 +46,4 @@ class ConfigManager():
 			return None
 	
 	def addConfig(self, name, contents):
-		self.configs[name] = contents
+		self._configs[name] = contents
