@@ -33,7 +33,7 @@ class ConfigManager():
 					#Remove the .json handle from the name
 					name = item.replace(".json", "")
 					finalPath = os.path.join(sub, name)
-					self.configs[finalPath] = parsed
+					self.addConfig(finalPath, parsed)
 
 	#Returns parsed JSON if config is valid JSON, otherwise, return Noen	
 	def parseConfig(self, config):
@@ -41,3 +41,6 @@ class ConfigManager():
 			return json.loads(config)
 		except ValueError:
 			return None
+	
+	def addConfig(self, name, contents):
+		self.configs[name] = contents
