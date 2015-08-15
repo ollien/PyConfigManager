@@ -32,21 +32,20 @@ class ConfigManager():
 
 			#Remove the .json handle from the name
 			name = item.replace(".json", "")
-			finalPath = os.path.join(sub, name)
+			finalName = os.path.join(sub, name)
 
 			#If it's a directory, run this function again within that directory
 			if os.path.isdir(os.path.join(path, item)):
 				self.getConfigs(path = os.path.join(path, item), sub = os.path.join(sub, item))
-			#If we already have something from the cache, skip it.
-			elif overrideCache or name not in self._configs:
+			#If we already have something from the cache, or added in previously, skip it.
+			elif overrideCache or finalName not in self._configs:
 				#Read in the file
 				f = open(os.path.join(path, item), "r")
 				#Check if it's JSON. If it is, it will be parsed.
 				parsed = self.parseConfig(f.read())
 				f.close()
 				if parsed != None:
-					self.addConfig(finalPath, parsed)
-
+					self.addConfig(finalName, parsed)
 	#Returns parsed JSON if config is valid JSON, otherwise, return Noen	
 	def parseConfig(self, config):
 		try:
