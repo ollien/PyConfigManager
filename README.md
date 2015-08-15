@@ -15,8 +15,7 @@ We can easily manage it!
 
 ```py
 import configmanager
-manager = configmanager.ConfigManager()
-configs = manager.configs
+configs = configmanager.ConfigManager()
 #Say we want to access config/config.json. 
 rootConfig = configs["config"]
 #It's as simple as that! What if we want to access config/web/server.json? Simple! 
