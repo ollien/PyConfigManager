@@ -3,12 +3,18 @@ import os
 import os.path
 
 class ConfigManager():
-	_cache = {}
-	def __init__(self, configPath = "configs/"):
+	_caches = {}
+	def __init__(self, configPath = "configs/", overrideCache = False):
 		if os.path.isdir(configPath):
 			self.configPath = configPath
 		else:
 			raise IOError("Config Path does not eixst")
+
+		if not overrideCache and configPath in ConfigManager._caches:
+			self._cache = ConfigManager._caches['path']
+		else:
+			self._cache = {}
+
 		self._configs = {}
 		self._syncCache()
 		self.getConfigs()
@@ -55,9 +61,9 @@ class ConfigManager():
 	
 	def addConfig(self, name, contents):
 		self._configs[name] = contents
-		ConfigManager._cache[name] = contents
+		self._cache[name] = contents
 	
 	def _syncCache(self):
-		unmatchedKeys = [key for key in ConfigManager._cache.keys() if key not in self._configs]
+		unmatchedKeys = [key for key in self._cache.keys() if key not in self._configs]
 		for key in unmatchedKeys:
-			self._configs[key] = ConfigManager._cache[key]
+			self._configs[key] = self._cache[key]
