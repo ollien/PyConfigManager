@@ -7,8 +7,10 @@ class ConfigManager():
 	def __init__(self, configPath = "configs/", overrideCache = False):
 		if os.path.isdir(configPath):
 			self.configPath = configPath
+		else if os.path.isfile(configPath):
+			raise ValueError("configPath is a file, expected directory.")
 		else:
-			raise IOError("Config Path does not eixst")
+			raise ValueError("configPath does not eixst.")
 
 		if not overrideCache and configPath in ConfigManager._caches:
 			self._cache = ConfigManager._caches['path']
