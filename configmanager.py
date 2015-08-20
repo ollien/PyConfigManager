@@ -7,7 +7,7 @@ class ConfigManager():
 	def __init__(self, configPath = "configs/", overrideCache = False):
 		if os.path.isdir(configPath):
 			self.configPath = configPath
-		else if os.path.isfile(configPath):
+		elif os.path.isfile(configPath):
 			raise ValueError("configPath is a file, expected directory.")
 		else:
 			raise ValueError("configPath does not eixst.")
@@ -25,7 +25,7 @@ class ConfigManager():
 		try:
 			return self._configs[key]
 		except KeyError:
-			self.syncCache()
+			self._syncCache()
 			return self._configs[key]
 
 	#Recursive function to get all files. Sub is the relative path from the root config dir.	
