@@ -11,7 +11,12 @@ config/
   db/
     connection.json
 ```
-We can easily manage it! 
+we can easily manage it! All you need to do is install pyconfigmanager using 
+
+```
+python setup.py install
+```
+and add this code to your project.
 
 ```py
 import configmanager
